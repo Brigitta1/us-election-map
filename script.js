@@ -1,3 +1,5 @@
+
+
 var createPolitician = function(name, partyColor) {
 
   var politician = {};
@@ -43,31 +45,39 @@ console.log(jane.electionResults);
 console.log(betsy.electionResults);
 
 
-var getStateResults = function (state) {
 
-  theStates[state].winner = null;
+
+for (var abbrev in g_map_stateMap) {
+    var state = g_map_stateMap[abbrev];
+    
+    
+    var getStateResults = function (state) {
+
+  state.winner = null;
   
   if (jane.electionResults[state] > betsy.electionResults[state]) {
-    theStates[state].winner = jane;
+    state.winner = jane;
     
   } else if (jane.electionResults[state] < betsy.electionResults[state]) {
-    theStates[state].winner = betsy;
+    state.winner = betsy;
   }
 
 
-    var stateWinner = theStates[state].winner;
+    var stateWinner = state.winner;
 
     if (stateWinner !== null) {
-        theStates[state].rgbColor = stateWinner.partyColor;
+        state.rgbColor = stateWinner.partyColor;
   
     }   else {
-        theStates[state].rgbColor = [11, 32, 57];
+        state.rgbColor = [11, 32, 57];
         }
     
 };
 
 
-getStateResults;
+    getStateResults;
+    state.updateColor();
+    
 
 
 jane.tallyVotes();
@@ -87,6 +97,7 @@ if (jane.totalVotes > betsy.totalVotes) {
 }
 
 console.log("The winner of the election is " + winner + "!");
+}
 
 
 
